@@ -5,6 +5,9 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Dashboard from '../screens/conductor/Dashboard';
 import colors from '../utils/colors';
+import ResetPasswordScreen from '../screens/Auth/ResetPasswordScreen';
+import Login from '../screens/Auth/LoginScreen';
+import Button from './Button';
 
 
 
@@ -24,13 +27,13 @@ const AppNavigator = () => (
             name="Dashboard"
             component={Dashboard}
         />
-        {/* <Tab.Screen
+        <Tab.Screen
             options={({ navigation }) => ({
-                tabBarButton: () => <TripButton onPress={() => navigation.navigate("Trip")} />,
+                tabBarButton: () => <Button onPress={() => navigation.navigate("Login")} />,
 
             })}
             name="Trip"
-            component={TripScreen}
+            component={Login}
         />
         <Tab.Screen
             options={{
@@ -38,8 +41,8 @@ const AppNavigator = () => (
                 title: "Account"
             }}
             name="UserProfile"
-            component={ProfileNavigator}
-        /> */}
+            component={ResetPasswordScreen}
+        />
     </Tab.Navigator>
 )
 
