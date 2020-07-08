@@ -1,16 +1,32 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity,Text } from 'react-native';
+import { View, StyleSheet, TouchableOpacity,Text,Modal } from 'react-native';
 import { Card, Avatar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 import colors from '../../utils/colors';
+import ViewPassanger from './ViewPassanger';
 
 export default class Dashboard extends React.Component {
    
+state = {
+    showListVisible: false
+  };
+  toggleListModal(){
+    this.setState({showListVisible: !this.state.showListVisible});
+  };
     render() {
         return (
             <View style={StyleSheet.container}>
+                <Modal
+                    animationType='slide'
+                    visible= {this.state.showListVisible}
+                    onRequestClose={()=> this.toggleListModal()}>
+                        <ViewPassanger
+                            closeModal={() =>this.toggleListModal()}
+                        />
+                </Modal>
+
                 <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: '20%' }}>
                         <TouchableOpacity>
                             <Card style={styles.cardContainer}>
@@ -21,7 +37,7 @@ export default class Dashboard extends React.Component {
                             </Card>
                         </TouchableOpacity>
 
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>this.toggleListModal()}>
                             <Card style={styles.cardContainer}>
                                 <View style={styles.Iconcontainer}>
                                     <Icon name="seat-passenger" color={colors.primary} size={40} />
