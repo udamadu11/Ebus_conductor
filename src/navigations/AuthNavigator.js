@@ -8,6 +8,8 @@ import LoginScreen from '../screens/Auth/LoginScreen';
 import ResetPasswordScreen from '../screens/Auth/ResetPasswordScreen';
 import SetNewPasswordScreen from '../screens/Auth/SetNewPasswordScreen';
 import DashboardNavigator from './DashboardNavigator';
+import ViewPassanger from '../screens/conductor/ViewPassanger';
+import PassangerProfile from '../screens/conductor/PassangerProfile';
 
 const Stack = createStackNavigator();
 
@@ -42,10 +44,21 @@ const AuthNavigator = () => (
             component={SetNewPasswordScreen}
         />
         <Stack.Screen
+            name="ViewPassanger"
+            options={{ title: "Passengers" }}
+            component={ViewPassanger}
+        />
+        <Stack.Screen
             name="Dashboard"
             component={DashboardNavigator}
             options={{ title: "Dashboard", headerShown: false }}
         />
+        <Stack.Screen
+            name="PassengerProfile"
+            component={PassangerProfile}
+            options={{ title: "Profile", headerShown: false }}
+        />
+        
 
 {/*
         <Stack.Screen

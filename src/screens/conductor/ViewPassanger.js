@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, StyleSheet,Text,FlatList,Image} from 'react-native';
 import { Card, Appbar } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const ViewPassanger = () =>{
+const ViewPassanger = ({navigation}) =>{
 
     const data = [
         {id:1,name:"udara",description:"Passenger"},
@@ -15,7 +14,7 @@ const ViewPassanger = () =>{
     
     const renderList = ((item) =>{
         return(
-            <Card style={styles.myCard}>
+            <Card style={styles.myCard} key={item.id} onPress={()=> navigation.navigate("PassengerProfile")}>
                 <View style={styles.cardView}>
                     <Image 
                         style={styles.avator}
