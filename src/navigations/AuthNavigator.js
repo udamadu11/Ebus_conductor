@@ -7,6 +7,8 @@ import LoadingScreen from '../screens/loadingScreen';
 import LoginScreen from '../screens/Auth/LoginScreen';
 import ResetPasswordScreen from '../screens/Auth/ResetPasswordScreen';
 import SetNewPasswordScreen from '../screens/Auth/SetNewPasswordScreen';
+import DashboardNavigator from './DashboardNavigator';
+
 const Stack = createStackNavigator();
 
 const AuthNavigator = () => (
@@ -38,6 +40,11 @@ const AuthNavigator = () => (
             name="LinkVerify"
             options={{ title: "Reset Password" }}
             component={SetNewPasswordScreen}
+        />
+        <Stack.Screen
+            name="Dashboard"
+            component={DashboardNavigator}
+            options={{ title: "Dashboard", headerShown: false }}
         />
 
 {/*
