@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet,Text,FlatList,Image} from 'react-native';
-import { Card, Avatar } from 'react-native-paper';
+import { Card, Appbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ViewPassanger = () =>{
