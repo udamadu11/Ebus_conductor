@@ -7,7 +7,7 @@ const Button = function ({ onPress }) {
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={styles.container}>
-                <Icon name="train-car" color={colors.primary} size={40} />
+                <Icon name="map-marker-radius" color={colors.primary} size={40} />
             </View>
         </TouchableOpacity>
     )
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
         borderRadius: 40,
         borderColor: colors.primary,
-        borderWidth: 15,
+        borderWidth: 10,
         bottom: 25,
         height: 80,
         justifyContent: 'center',

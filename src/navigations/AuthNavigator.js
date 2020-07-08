@@ -54,23 +54,7 @@ const AuthNavigator = () => (
             options={{ title: "Register" }}
         />
 
-        <Stack.Screen
-            name="ResetPassword"
-            component={ResetPasswordScreen}
-            options={{ title: "Forgot Password" }}
-        />
-
-        <Stack.Screen
-            name="Dashboard"
-            component={DashboardNavigator}
-            options={{ title: "Dashboard", headerShown: false }}
-        />
-
-        <Stack.Screen
-            name="LinkVerify"
-            options={{ title: "Reset Password" }}
-            component={SetNewPasswordScreen}
-        /> */}
+       */}
 
     </Stack.Navigator>
 )

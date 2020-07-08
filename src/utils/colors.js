@@ -8,4 +8,5 @@ export default {
     gray: "#f8f4f2",
     mediumGray: "#D3BECF",
     darkGray: "#787482",
+    purple:"#6A1B9A"
 }

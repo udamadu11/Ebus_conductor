@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Dashboard from '../screens/conductor/Dashboard';
 import colors from '../utils/colors';
-import ResetPasswordScreen from '../screens/Auth/ResetPasswordScreen';
+import ProfileNavigator from '../navigations/ProfileNavigator';
 import Login from '../screens/Auth/LoginScreen';
 import Button from './Button';
 
@@ -41,7 +41,7 @@ const AppNavigator = () => (
                 title: "Account"
             }}
             name="UserProfile"
-            component={ResetPasswordScreen}
+            component={ProfileNavigator}
         />
     </Tab.Navigator>
 )
