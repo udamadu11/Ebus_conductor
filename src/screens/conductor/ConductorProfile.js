@@ -83,7 +83,7 @@ const UserProfileScreen = ({ navigation }) => {
                 </View>
                 <View style={styles.buttonContainer}>
                     <Button mode="outlined" icon="shield-key" labelStyle={{ fontSize: 13 }} onPress={() => navigation.navigate('ChangePassword')}>Change Password</Button>
-                    <Button mode="outlined" icon="account-edit" labelStyle={{ fontSize: 13 }} onPress={() => navigation.navigate('EditUserProfile')} >Edit Details</Button>
+                    <Button mode="outlined" icon="account-edit" labelStyle={{ fontSize: 13 }} onPress={() => navigation.navigate('EditConductor')} >Edit Details</Button>
                 </View>
             </ImageBackground>
         </ScrollView>
