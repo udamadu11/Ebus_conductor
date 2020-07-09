@@ -15,7 +15,7 @@ const UserAccountScreen = ({ name = "Siny Johns", email = "joohndoe@gmail.com", 
                 title={name}
                 subTitle={email}
                 image={image}
-               // onPress={() => navigation.navigate("EditUserProfile")}
+               onPress={() => navigation.navigate("Profile")}
             />
             <View style={styles.container}>
                 <AppCard title="My Messages" IconComponent={<AppIcon name="forum-outline" backgroundColor={colors.primary} />} />

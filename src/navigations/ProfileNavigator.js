@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack"
 import SetNewPasswordScreen from '../screens/Auth/SetNewPasswordScreen';
 // import ChangePasswordScreen from '../screens/Passenger/ChangePasswordScreen';
  import ConductorAccDetails from '../screens/conductor/ConductorAccDetails';
+ import ConductorProfile from '../screens/conductor/ConductorProfile'
 
 
 const Stack = createStackNavigator();
@@ -13,17 +14,6 @@ const ProfileNavigator = () => (
 
     <Stack.Navigator>
 
-        {/* 
-
-        <Stack.Screen
-            name="EditUserProfile"
-            component={EditUserProfileScreen}
-            options={{
-                headerShown: false,
-                headerLeft: null,
-                title: 'Edit Profile'
-            }}
-        /> */}
         <Stack.Screen
             name="UserProfile"
             component={ConductorAccDetails}
@@ -34,12 +24,12 @@ const ProfileNavigator = () => (
             }}
         />
         <Stack.Screen
-            name="SetNewPassword"
-            component={SetNewPasswordScreen}
+            name="Profile"
+            component={ConductorProfile}
             options={{
                 headerShown: false,
                 headerLeft: null,
-                title: 'Set New Password'
+                title: 'Profile'
             }}
         />
 
