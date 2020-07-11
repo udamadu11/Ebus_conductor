@@ -18,9 +18,9 @@ export default class Dashboard extends React.Component {
                         <TouchableOpacity>
                             <Card style={styles.cardContainer}>
                                 <View style={styles.Iconcontainer}>
-                                    <Icon name="account-cash" color={colors.primary} size={30} />
+                                    <Icon name="cash-plus" color={colors.primary} size={30} />
                                 </View>
-                                    <Text style={styles.text}>Payments</Text>
+                                    <Text style={styles.text}>Income</Text>
                             </Card>
                         </TouchableOpacity>
 
@@ -37,9 +37,9 @@ export default class Dashboard extends React.Component {
                         <TouchableOpacity>
                             <Card style={styles.cardContainer}>
                                 <View style={styles.Iconcontainer}>
-                                    <Icon name="account-cash" color={colors.primary} size={30} />
+                                    <Icon name="seat" color={colors.primary} size={30} />
                                 </View>
-                                    <Text style={styles.text}>Payments</Text>
+                                    <Text style={styles.text}>Booking</Text>
                             </Card>
                         </TouchableOpacity>
 
