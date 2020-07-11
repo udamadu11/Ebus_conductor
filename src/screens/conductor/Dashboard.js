@@ -13,7 +13,8 @@ export default class Dashboard extends React.Component {
         return (
             <View style={StyleSheet.container}>
 
-                <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: '20%' }}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: '30%' }}>
+                        <View style={{flexDirection:'row'}}>
                         <TouchableOpacity>
                             <Card style={styles.cardContainer}>
                                 <View style={styles.Iconcontainer}>
@@ -31,6 +32,26 @@ export default class Dashboard extends React.Component {
                                 <Text style={styles.text}>Passenger</Text>
                             </Card>
                         </TouchableOpacity>
+                        </View>
+                        <View style={{flexDirection:'row'}}>
+                        <TouchableOpacity>
+                            <Card style={styles.cardContainer}>
+                                <View style={styles.Iconcontainer}>
+                                    <Icon name="account-cash" color={colors.primary} size={30} />
+                                </View>
+                                    <Text style={styles.text}>Payments</Text>
+                            </Card>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => navigation.navigate('ViewPassanger')} >
+                            <Card style={styles.cardContainer}>
+                                <View style={styles.Iconcontainer}>
+                                    <Icon name="seat-passenger" color={colors.primary} size={40} />
+                                </View>
+                                <Text style={styles.text}>Passenger</Text>
+                            </Card>
+                        </TouchableOpacity>
+                        </View>
                 </View>
 
             </View>
@@ -53,9 +74,10 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        width: 150,
-        height: 150,
-        marginVertical: 10
+        width: 120,
+        height: 120,
+        marginVertical: 10,
+        marginHorizontal:10
     },
     Iconcontainer:{
         alignItems: 'center',
@@ -70,7 +92,7 @@ const styles = StyleSheet.create({
     text:{
         justifyContent:'center',
         alignItems:'center',
-        marginTop:30,
+        marginTop:20,
         fontWeight:"700",
         fontSize:15,
         color: colors.purple
