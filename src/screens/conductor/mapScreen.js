@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import { StyleSheet, ActivityIndicator } from 'react-native'
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {Marker,PROVIDER_GOOGLE} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const initialState = {
     latitude:null,
@@ -15,13 +16,13 @@ const MapScreen = () => {
     const [currentPosition, setCurrentPositiion] = useState(initialState);
 
    useEffect(()=>{
-    Geolocation.getCurrentPosition(position => {
+    Geolocation.watchPosition(position => {
       // alert(JSON.stringify(position))
       const {longitude, latitude} = position.coords;
       setCurrentPositiion({
         ...currentPosition,
-        latitude:6.927079,
-        longitude:79.861244,
+        latitude,
+        longitude,
       })
      },error =>alert(error.message),
      {timeout:20000, maximumAge:1000}
@@ -32,8 +33,12 @@ const MapScreen = () => {
               provider={PROVIDER_GOOGLE}
               style={{flex:1}}
               initialRegion={currentPosition}
-              showsUserLocation
-            />
+              showsUserLocation>
+                  <Marker coordinate={currentPosition}>
+                      <Icon name='bus-marker' size={40}/>
+                  </Marker>
+                  
+            </MapView>
           ) : <ActivityIndicator style={{flex:1}} animating size="large" /> 
     }    
 
