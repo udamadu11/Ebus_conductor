@@ -1,15 +1,16 @@
 import React from 'react';
 import { View, StyleSheet,Text,FlatList,Image} from 'react-native';
 import { Card, Appbar } from 'react-native-paper';
+import images from '../../utils/images';
 
 const ViewPassanger = ({navigation}) =>{
 
     const data = [
         {id:1,name:"udara",description:"Passenger"},
-        {id:2,name:"udara",description:"Passenger"},
-        {id:3,name:"udara",description:"Passenger"},
-        {id:4,name:"udara",description:"Passenger"},
-        {id:5,name:"udara",description:"Passenger"},
+        {id:2,name:"madumalka",description:"Passenger"},
+        {id:3,name:"abc",description:"Passenger"},
+        {id:4,name:"cde",description:"Passenger"},
+        {id:5,name:"efg",description:"Passenger"},
     ];
     
     const renderList = ((item) =>{
@@ -18,7 +19,7 @@ const ViewPassanger = ({navigation}) =>{
                 <View style={styles.cardView}>
                     <Image 
                         style={styles.avator}
-                        source={require('../../image/google.png')}
+                        source={images.USER_PROFILE_BACKGROUND}
                     />
                     <View style={{marginLeft:10}}>
                         <Text style={styles.text}>{item.name}</Text>

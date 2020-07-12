@@ -8,6 +8,7 @@ import colors from '../utils/colors';
 import ProfileNavigator from '../navigations/ProfileNavigator';
 import Login from '../screens/Auth/LoginScreen';
 import Button from './Button';
+import MapScreen from '../screens/conductor/mapScreen';
 
 
 
@@ -29,11 +30,11 @@ const AppNavigator = () => (
         />
         <Tab.Screen
             options={({ navigation }) => ({
-                tabBarButton: () => <Button onPress={() => navigation.navigate("Login")} />,
+                tabBarButton: () => <Button onPress={() => navigation.navigate("Map")} />,
 
             })}
-            name="Trip"
-            component={Login}
+            name="Map"
+            component={MapScreen}
         />
         <Tab.Screen
             options={{

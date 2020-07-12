@@ -21,7 +21,7 @@ const Passanger = () =>{
             />
             <View style={{marginTop:-50,alignSelf:'center'}}>
             <Image 
-                source={images.FACEBOOK_ICON}
+                source={images.USER_PROFILE_BACKGROUND}
                 style={{width:120,height:120,borderRadius:60}}
             />
             </View>
