@@ -10,11 +10,16 @@ const initialState = {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
 }
-
+const initialState1 = {
+  latitude:	6.927079,
+  longitude:79.861244,
+  latitudeDelta: 0.0922,
+  longitudeDelta: 0.0421,
+}
 const MapScreen = () => {
 
     const [currentPosition, setCurrentPositiion] = useState(initialState);
-
+    const [currentPosition1, setCurrentPositiion1] = useState(initialState1);
    useEffect(()=>{
     Geolocation.watchPosition(position => {
       // alert(JSON.stringify(position))
@@ -26,7 +31,13 @@ const MapScreen = () => {
       })
      },error =>alert(error.message),
      {timeout:20000, maximumAge:1000}
-     )
+     ),
+     Geolocation.setRNConfiguration(config=>{
+       setCurrentPositiion1({
+        latitude:	6.927079,
+        longitude:79.861244,
+       })
+     })
    }, [])
     return currentPosition.latitude ?(
             <MapView 
@@ -37,7 +48,9 @@ const MapScreen = () => {
                   <Marker coordinate={currentPosition}>
                       <Icon name='bus-marker' size={40}/>
                   </Marker>
-                  
+                  <Marker coordinate={currentPosition1}>
+                      <Icon name='bus-marker' size={40}/>
+                  </Marker>
             </MapView>
           ) : <ActivityIndicator style={{flex:1}} animating size="large" /> 
     }    
