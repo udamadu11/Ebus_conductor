@@ -8,6 +8,8 @@ import navigationTheme from './navigations/navigationTheme';
 import AuthContext from './auth/context';
 import authStorage from './auth/storage';
 
+import Permissions from './components/Permissions';
+
 const App = () => {
 
   const [user, setUser] = useState();
@@ -19,6 +21,7 @@ const App = () => {
 
   useEffect(() => {
     restoreUser();
+    Permissions();
   }, [])
 
   return (
