@@ -1,33 +1,51 @@
-import React, { useState } from 'react';
-import { StyleSheet, ScrollView, Image, View, Modal, ImageBackground,Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, ScrollView, Image, View, Modal, ImageBackground,Text,ActivityIndicator } from 'react-native';
 import { IconButton, Colors, Button } from 'react-native-paper';
+
 
 import { AppForm, AppFormInput, SubmitButton, ErrorMessage } from '../../components/forms';
 import colors from '../../utils/colors';
 import useAuth from '../../auth/useAuth';
 import images from '../../utils/images';
-
+import userAPI from '../../api/user';
 
 
 const UserProfileScreen = ({ navigation }) => {
 
-    // const { user } = useAuth();
+    const { user } = useAuth();
+    const [data,setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect( () =>{
+        async function fetchData(){
+            const result = await userAPI.userDetails();
+            if (!result.ok) {
+                return alert("Error while connecting.");
+            }
+            // console.log(result);
+            setData(result.data);
+            setLoading(false);
+            return;
+        }
+        fetchData();
+    },[])
 
     return (
-        
         <ScrollView style={styles.scrollView}>
+            {loading ? 
+            <ActivityIndicator size="large" color="#0000ff" />
+            :
             <ImageBackground source={images.LOGING_BACKGROUND} style={styles.backgroundImage} >
             {/* <Image
                 style={styles.topImage}
                 source={images.LOGO}
                 resizeMode="contain"
             /> */}
-            <Text style={styles.userNameText}> Dumindu </Text>
-            <Text style={styles.emailText}> duminduchamal@gmail.com </Text>
-                <Image style={styles.avatar} source={{ uri : "https://cdn0.iconfinder.com/data/icons/transport-111/66/20-512.png" }} />
+            <Text style={styles.userNameText}> {data.name} </Text>
+            <Text style={styles.emailText}> {data.email} </Text>
+                <Image style={styles.avatar} source={{ uri : data.image }} />
                 <View style={{paddingTop:200 ,justifyContent: "center",alignItems: 'center',}}>
                     <AppForm
-                        initialValues={{ name: "" , email: "" , address: "" , number: "" , image: "" }}
+                        initialValues={{ name: data.name , email: data.email, address: data.address, phoneNumber: data.phoneNumber, image:data.image }}
                         style={styles.data}
                         // validationSchema={reviewSchema}
                         // onSubmit={handleUpdate}
@@ -41,7 +59,7 @@ const UserProfileScreen = ({ navigation }) => {
                             label="Name"
                             mode="outlined"
                             disabled
-                            value="Dumindu"
+                            value={data.name}
                         />
 
                         <AppFormInput
@@ -51,7 +69,7 @@ const UserProfileScreen = ({ navigation }) => {
                             style={styles.input}
                             label="Email"
                             mode="outlined"
-                            value="duminduchamal@gmail.com"
+                            value={data.email}
                             disabled
                         />
 
@@ -64,20 +82,20 @@ const UserProfileScreen = ({ navigation }) => {
                             mode="outlined"
                             disabled
                             // multiline
-                            // value={user.address}
+                            value={data.address}
                             multiline={true}
                             numberOfLines={2}
                             style={{width:300}}
                         />
                         <AppFormInput
-                            name="number"
+                            name="phoneNumber"
                             autoCapitalize="none"
                             autoCorrect={false}
                             style={styles.input}
                             label="Phone Number"
                             mode="outlined"
                             disabled
-                            // value={user.number}
+                            value={data.phoneNumber}
                         />
                     </AppForm>
                 </View>
@@ -86,8 +104,8 @@ const UserProfileScreen = ({ navigation }) => {
                     <Button mode="outlined" icon="account-edit" labelStyle={{ fontSize: 13 }} onPress={() => navigation.navigate('EditConductor')} >Edit Details</Button>
                 </View>
             </ImageBackground>
+        }
         </ScrollView>
-        
 
     );
 };

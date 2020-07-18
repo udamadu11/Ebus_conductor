@@ -7,20 +7,22 @@ import AppIcon from '../../components/AppIcon'
 
 
 
-const UserAccountScreen = ({ name = "Siny Johns", email = "joohndoe@gmail.com", image = "https://cdn.pixabay.com/photo/2017/04/03/15/52/love-you-2198772__340.png", navigation }) => {
+const UserAccountScreen = ({ navigation }) => {
+    const { user, logOut } = useAuth();
+
     return (
         <View>
             <AppCard
                 titleStyle={styles.name}
-                title={name}
-                subTitle={email}
-                image={image}
+                title={user.name}
+                subTitle={user.email}
+                image={user.image}
                onPress={() => navigation.navigate("Profile")}
             />
             <View style={styles.container}>
                 <AppCard title="My Messages" IconComponent={<AppIcon name="forum-outline" backgroundColor={colors.primary} />} />
                 <AppCard title="Settings" style={{ marginVertical: 10 }} IconComponent={<AppIcon name="cog" backgroundColor={'#5515ee'} />} />
-                <AppCard title="Logout"  IconComponent={<AppIcon name="logout" backgroundColor={'#F5d529'} />} />
+                <AppCard title="Logout" onPress={() => logOut()} IconComponent={<AppIcon name="logout" backgroundColor={'#F5d529'} />} />
 
             </View>
         </View>

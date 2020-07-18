@@ -19,7 +19,7 @@ const reviewSchema = yup.object({
 
 const ChangePasswordScreen = ({ navigation }) => {
 
-    // const { user } = useAuth();
+    const { user } = useAuth();
     const [updateState, setUpdateState] = useState({
         updateError: null,
         updateLoader: false,
@@ -27,38 +27,38 @@ const ChangePasswordScreen = ({ navigation }) => {
 
     const handleUpdate = async (values) => {
         setUpdateState({ updateLoader: true });
-        // const result = await userAPI.updatePassword(_.pick(values, ["id", "oldpassword", "newpassword", "confirmpassword"]));
-        // setUpdateState({ updateLoader: false });
-        // if (!result.ok) {
-        //     if (result.data) {
-        //         setUpdateState({ updateError: result.data.error });
-        //     }
-        //     else {
-        //         setUpdateState({ updateError: "An unknown error occurred." });
-        //         console.log(result);
-        //     }
-        //     return;
-        // }
-        // if (result.ok){
-        //     Alert.alert(
-        //         'Password Change',
-        //         'You have successefully changed you password!',
-        //         [
-        //           { text: 'OK', onPress: () => navigation.navigate('Profile') }
-        //         ],
-        //         { cancelable: false }
-        //       );
-        // }
+        const result = await userAPI.updatePassword(_.pick(values, ["oldpassword", "newpassword", "confirmpassword"]));
+        setUpdateState({ updateLoader: false });
+        if (!result.ok) {
+            if (result.data) {
+                setUpdateState({ updateError: result.data.error });
+            }
+            else {
+                setUpdateState({ updateError: "An unknown error occurred." });
+                console.log(result);
+            }
+            return;
+        }
+        if (result.ok){
+            Alert.alert(
+                'Password Change',
+                'You have successefully changed you password!',
+                [
+                  { text: 'OK', onPress: () => navigation.navigate('Profile') }
+                ],
+                { cancelable: false }
+              );
+        }
     }
 
     return (
         
         <ScrollView style={styles.scrollView}>
             <ImageBackground source={images.LOGING_BACKGROUND} style={styles.backgroundImage} >
-                <Image style={styles.avatar} source={{ uri : "https://cdn0.iconfinder.com/data/icons/transport-111/66/20-512.png" }} />
+                <Image style={styles.avatar} source={{ uri : user.image }} />
                 <View style={{paddingTop:130 ,justifyContent: "center",alignItems: 'center',}}>
                     <AppForm
-                        initialValues={{ oldpassword: "" , newpassword: "" , confirmpassword: "", id:"" }}
+                        initialValues={{ oldpassword: "" , newpassword: "" , confirmpassword: ""}}
                         validationSchema={reviewSchema}
                         onSubmit={handleUpdate}
                     >
