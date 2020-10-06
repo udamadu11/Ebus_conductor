@@ -1,33 +1,32 @@
 import React, { useState } from 'react';
-import { StyleSheet, ScrollView, Image, View, ImageBackground, Alert } from 'react-native';
+import { StyleSheet, ScrollView, Image, View, ImageBackground, Alert,Text } from 'react-native';
+import { Button, TextInput, Card } from 'react-native-paper';
 import * as yup from 'yup';
 import _ from "lodash";
 
 import { AppForm, AppFormInput, SubmitButton, ErrorMessage } from '../../components/forms';
 import colors from '../../utils/colors';
-import useAuth from '../../auth/useAuth';
 import images from '../../utils/images';
-import userAPI from '../../api/user';
+import authAPI from '../../api/auth';
 
 const reviewSchema = yup.object({
-    oldpassword: yup.string().required('Old password is required').min(6),
     newpassword: yup.string().required('New password is required').min(6),
     confirmpassword: yup.string().required('Confirm password is required')
     .oneOf([yup.ref('newpassword'), null], 'Passwords must match')
 });
 
 
-const ChangePasswordScreen = ({ navigation }) => {
+const PasswordResetScreen = ({ navigation, route }) => {
 
-    const { user } = useAuth();
     const [updateState, setUpdateState] = useState({
         updateError: null,
         updateLoader: false,
     });
+    const { id } = route.params;
 
     const handleUpdate = async (values) => {
         setUpdateState({ updateLoader: true });
-        const result = await userAPI.updatePassword(_.pick(values, ["oldpassword", "newpassword", "confirmpassword"]));
+        const result = await authAPI.resetpassword(values.id, values.newpassword, values.confirmpassword);
         setUpdateState({ updateLoader: false });
         if (!result.ok) {
             if (result.data) {
@@ -35,16 +34,15 @@ const ChangePasswordScreen = ({ navigation }) => {
             }
             else {
                 setUpdateState({ updateError: "An unknown error occurred." });
-                console.log(result);
             }
             return;
         }
         if (result.ok){
             Alert.alert(
-                'Password Change',
-                'You have successefully changed you password!',
+                'Password Reset',
+                'You have successefully reset you password! Please login with the new password',
                 [
-                  { text: 'OK', onPress: () => navigation.navigate('Profile') }
+                  { text: 'OK', onPress: () => navigation.navigate('Login') }
                 ],
                 { cancelable: false }
               );
@@ -54,24 +52,15 @@ const ChangePasswordScreen = ({ navigation }) => {
     return (
         
         <ScrollView style={styles.scrollView}>
-            <ImageBackground source={images.LOGING_BACKGROUND} style={styles.backgroundImage} >
-                <Image style={styles.avatar} source={{ uri : user.image }} />
-                <View style={{paddingTop:130 ,justifyContent: "center",alignItems: 'center',}}>
+            <Card>
+                <Card.Cover source={images.PASSWORD_BACKGROUND} />
+            </Card>
+                <View style={{justifyContent: "center",alignItems: 'center',}}>
                     <AppForm
-                        initialValues={{ oldpassword: "" , newpassword: "" , confirmpassword: ""}}
+                        initialValues={{ newpassword: "" , confirmpassword: "", id:id }}
                         validationSchema={reviewSchema}
                         onSubmit={handleUpdate}
                     >
-                        <AppFormInput
-                            // autoFocus={true}
-                            name="oldpassword"
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            style={styles.input}
-                            label="Old Password"
-                            mode="outlined"
-                            secureTextEntry
-                        />
 
                         <AppFormInput
                             name="newpassword"
@@ -92,7 +81,6 @@ const ChangePasswordScreen = ({ navigation }) => {
                             mode="outlined"
                             secureTextEntry
                         />
-
                         {updateState.updateError && <ErrorMessage error={updateState.updateError} />}
 
                         <SubmitButton
@@ -100,11 +88,10 @@ const ChangePasswordScreen = ({ navigation }) => {
                             style={styles.button}
                             color={colors.primary}
                             contentStyle={styles.buttonContent}
-                            title="Update"
+                            title="Reset Password"
                         />
                     </AppForm>
                 </View>
-            </ImageBackground>
         </ScrollView>
         
 
@@ -116,9 +103,9 @@ const styles = StyleSheet.create({
         flex: 1
     },
     backgroundImage: {
-        resizeMode: "stretch",
         justifyContent: "center",
         alignItems: 'center',
+        resizeMode:"stretch"
     },
     button: {
         marginTop: 40,
@@ -132,7 +119,7 @@ const styles = StyleSheet.create({
     },
     buttonContent: {
         height: 40,
-        width: 150,
+        width: 200,
     },
     title: {
         fontSize: 20,
@@ -152,4 +139,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ChangePasswordScreen;
+export default PasswordResetScreen;

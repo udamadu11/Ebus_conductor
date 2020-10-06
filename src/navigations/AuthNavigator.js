@@ -10,6 +10,9 @@ import SetNewPasswordScreen from '../screens/Auth/SetNewPasswordScreen';
 import DashboardNavigator from './DashboardNavigator';
 import ViewPassanger from '../screens/conductor/ViewPassanger';
 import PassangerProfile from '../screens/conductor/PassangerProfile';
+import ForgotPasswordScreen from '../screens/Auth/ForgetPasswordScreen';
+import VerifyCodeScreen from '../screens/Auth/VerifyCodeScreen';
+import PasswordResetScreen from '../screens/Auth/PasswordResetScreen';
 
 const Stack = createStackNavigator();
 
@@ -34,15 +37,22 @@ const AuthNavigator = () => (
 
         <Stack.Screen
             name="ResetPassword"
-            component={ResetPasswordScreen}
+            component={ForgotPasswordScreen}
             options={{ title: "Forgot Password" }}
         />
 
         <Stack.Screen
             name="LinkVerify"
-            options={{ title: "Reset Password" }}
-            component={SetNewPasswordScreen}
+            options={{ title: "Verify Code" }}
+            component={VerifyCodeScreen}
         />
+
+        <Stack.Screen
+            name="PasswordReset"
+            options={{ title: "Reset Password" }}
+            component={PasswordResetScreen}
+        />
+
         <Stack.Screen
             name="ViewPassanger"
             options={{ title: "Passengers" }}
