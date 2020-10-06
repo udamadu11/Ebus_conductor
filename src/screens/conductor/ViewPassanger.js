@@ -1,18 +1,28 @@
-import React from 'react';
-import { View, StyleSheet,Text,FlatList,Image} from 'react-native';
+import React,{useState,useEffect} from 'react';
+import { View, StyleSheet,Text,FlatList,Image,SafeAreaView,Alert} from 'react-native';
 import { Card, Appbar } from 'react-native-paper';
 import images from '../../utils/images';
+import userAPI from '../../api/user';
+import _ from "lodash";
 
 const ViewPassanger = ({navigation}) =>{
-
-    const data = [
-        {id:1,name:"udara",description:"Passenger"},
-        {id:2,name:"madumalka",description:"Passenger"},
-        {id:3,name:"abc",description:"Passenger"},
-        {id:4,name:"cde",description:"Passenger"},
-        {id:5,name:"efg",description:"Passenger"},
-    ];
+    const [data, setData] = useState([]);
+    const [loading,setLoading] = useState(true);
     
+    const fetchData = async (values) =>{
+        const result = await userAPI.viewPassengers(_.pick(values,["name","email","id","number","address"]));
+            if (result.ok){
+                setData(result)
+                setLoading(false)
+            }else{
+                Alert.alert("Somthing Wrong")
+            }
+       }
+        
+        useEffect(()=>{
+            fetchData();
+        },[]);
+
     const renderList = ((item) =>{
         return(
             <Card style={styles.myCard} key={item.id} onPress={()=> navigation.navigate("PassengerProfile")}>
@@ -23,7 +33,6 @@ const ViewPassanger = ({navigation}) =>{
                     />
                     <View style={{marginLeft:10}}>
                         <Text style={styles.text}>{item.name}</Text>
-                        <Text style={styles.text}>{item.description}</Text>
                     </View>
                 </View>
             </Card>
@@ -31,15 +40,17 @@ const ViewPassanger = ({navigation}) =>{
     });
 
     return(
-        <View>
-            <FlatList 
+        <SafeAreaView style={{flex:1}}>
+        <FlatList 
                 data={data}
+                keyExtractor={item=> item._id}
                 renderItem={({item})=>{
                     return renderList(item)
                 }}
-                keyExtractor={item=>`${item.id}`}
+                onRefresh={()=>fetchData()}
+                refreshing={loading}
             />
-        </View>
+    </SafeAreaView>
     );
 }
 
