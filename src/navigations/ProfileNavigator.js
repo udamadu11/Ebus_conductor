@@ -8,6 +8,7 @@ import SetNewPasswordScreen from '../screens/Auth/SetNewPasswordScreen';
  import ConductorProfile from '../screens/conductor/ConductorProfile';
  import EditConductorProfileScreen from '../screens/conductor/EditConductorProfileScreen';
  import ChangePasswordScreen from '../screens/conductor/ChangePassword';
+ import ChangeSettingScreen from '../screens/conductor/SettingScreen';
 
 
 const Stack = createStackNavigator();
@@ -52,6 +53,16 @@ const ProfileNavigator = () => (
                 headerShown: true,
                 headerLeft: null,
                 title: 'Change Password'
+            }}
+        />
+
+        <Stack.Screen
+            name="Setting"
+            component={ChangeSettingScreen}
+            options={{
+                headerShown: true,
+                headerLeft: null,
+                title: 'Settings'
             }}
         />
 

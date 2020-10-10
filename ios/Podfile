@@ -81,6 +81,8 @@ target 'EbusConductor' do
 
   pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
 
+  pod 'react-native-settings', :path => '../node_modules/react-native-settings'
+
   target 'EbusConductorTests' do
     inherit! :complete
     # Pods for testing
