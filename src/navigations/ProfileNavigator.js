@@ -4,12 +4,13 @@ import { createStackNavigator } from "@react-navigation/stack"
 // import EditUserProfileScreen from '../screens/Passenger/EditUserProfileScreen';
 import SetNewPasswordScreen from '../screens/Auth/SetNewPasswordScreen';
 // import ChangePasswordScreen from '../screens/Passenger/ChangePasswordScreen';
- import ConductorAccDetails from '../screens/conductor/ConductorAccDetails';
- import ConductorProfile from '../screens/conductor/ConductorProfile';
- import EditConductorProfileScreen from '../screens/conductor/EditConductorProfileScreen';
- import ChangePasswordScreen from '../screens/conductor/ChangePassword';
-
-
+import ConductorAccDetails from '../screens/conductor/ConductorAccDetails';
+import ConductorProfile from '../screens/conductor/ConductorProfile';
+import EditConductorProfileScreen from '../screens/conductor/EditConductorProfileScreen';
+import ChangePasswordScreen from '../screens/conductor/ChangePassword';
+import SetDateScreen from '../screens/Reservation/SetDateScreen';
+import ViewReservationScreen from '../screens/Reservation/ViewReservationScreen';
+import ReservationDetailScreen from '../screens/Reservation/ReservationDetailScreen';
 const Stack = createStackNavigator();
 
 const ProfileNavigator = () => (
@@ -55,6 +56,35 @@ const ProfileNavigator = () => (
             }}
         />
 
+        <Stack.Screen
+            name="SetDateScreen"
+            component={SetDateScreen}
+            options={{
+                headerShown: true,
+                headerLeft: null,
+                title: 'Select Date'
+            }}
+        />
+
+        <Stack.Screen
+            name="ViewReservationScreen"
+            component={ViewReservationScreen}
+            options={{
+                headerShown: true,
+                headerLeft: null,
+                title: 'Reservations'
+            }}
+        />
+
+        <Stack.Screen
+            name="ReservationDetailScreen"
+            component={ReservationDetailScreen}
+            options={{
+                headerShown: true,
+                headerLeft: null,
+                title: 'Reservation Details'
+            }}
+        /> 
         
     </Stack.Navigator>
 
