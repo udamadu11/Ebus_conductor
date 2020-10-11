@@ -34,6 +34,7 @@
     "react-native-safe-area-context": "^3.0.7",
     "react-native-screens": "^2.9.0",
     "react-native-secure-key-store": "^2.0.7",
+    "react-native-settings": "^0.2.3",
     "react-native-vector-icons": "^7.0.0",
     "yup": "^0.29.1"
   },

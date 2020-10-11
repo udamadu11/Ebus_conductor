@@ -11,6 +11,8 @@ import ChangePasswordScreen from '../screens/conductor/ChangePassword';
 import SetDateScreen from '../screens/Reservation/SetDateScreen';
 import ViewReservationScreen from '../screens/Reservation/ViewReservationScreen';
 import ReservationDetailScreen from '../screens/Reservation/ReservationDetailScreen';
+import ChangeSettingScreen from '../screens/conductor/SettingScreen';
+
 const Stack = createStackNavigator();
 
 const ProfileNavigator = () => (
@@ -85,6 +87,14 @@ const ProfileNavigator = () => (
                 title: 'Reservation Details'
             }}
         /> 
+            name="Setting"
+            component={ChangeSettingScreen}
+            options={{
+                headerShown: true,
+                headerLeft: null,
+                title: 'Settings'
+            }}
+        />
         
     </Stack.Navigator>
 
