@@ -14,11 +14,12 @@ export default class Dashboard extends React.Component {
                                 <DashboardIcon 
                                     text="Passenger"
                                     name="seat-passenger"
-                                    onPress={()=>navigation.navigate('ViewPassanger')}
+                                    // onPress={()=>navigation.navigate('ViewPassanger')}
                                 />
                                 <DashboardIcon 
                                     text="Booking"
                                     name="seat"
+                                    // onPress={()=>navigation.navigate('SetDateScreen')}
                                 />
                             </View>
                             <View style={{flexDirection:'row'}}>
